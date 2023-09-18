@@ -1,0 +1,24 @@
+modules:
+  confluence:contentBylineItem:
+    - key: classification-app-for-confluence
+      function: main
+      title: Classification app for Confluence
+      tooltip: Confluence Document Classification
+      description: Enables you to set a classification status for Confluence pages
+      dynamicProperties:
+        function: getDP
+  function:
+    - key: main
+      handler: index.run
+    - key: getDP
+      handler: index.getDP
+app:
+  id: ari:cloud:ecosystem::app/8fe596a4-1ada-4a8c-bf2f-481767a60a07
+
+permissions:
+  scopes:
+    - read:confluence-props
+    - write:confluence-props
+  external:
+    images:
+      - 'https://chapter8.com/assets/images/2023-logo-8.svg'
