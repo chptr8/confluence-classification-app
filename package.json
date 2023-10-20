@@ -1,7 +1,7 @@
 {
   "name": "classification-app-for-confluence",
-  "version": "4.1.0",
-  "build": "4001000",
+  "version": "5.0.0",
+  "build": "2001040",
   "main": "index.js",
   "license": "MIT",
   "private": true,
