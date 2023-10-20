@@ -19,6 +19,7 @@ permissions:
   scopes:
     - read:confluence-props
     - write:confluence-props
+    - storage:app
   external:
     images:
       - 'https://chapter8.com/assets/images/2023-logo-8.svg'

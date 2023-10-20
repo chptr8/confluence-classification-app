@@ -11,17 +11,17 @@ import ForgeUI, {
   Option, 
   Button, 
 } from "@forge/ui";
-import { properties } from "@forge/api";
+import { properties, storage, startsWith } from "@forge/api";
 
 const App = () => {
   const { contentId } = useProductContext();
 
   const [getLabels, setLabels] = useState(async () => {
-    let storage = await properties.onConfluencePage(contentId).get("classificationLabels");
-    if (typeof storage === "undefined" || storage === null) return [];
+    let result = await storage.get('classificationLabels');
+    if (typeof result === "undefined" || result === null) return [];
+    result = JSON.parse(result);
 
-    storage = JSON.parse(storage);
-    return storage;
+    return result;
   });
 
   const [getClassState, setClassState] = useState(async () => {
@@ -38,9 +38,8 @@ const App = () => {
         { label: formData.label, value: formData.label }
       );
 
-      await properties
-      .onConfluencePage(contentId)
-      .set("classificationLabels", JSON.stringify(currentLabels))
+      await storage
+      .set('classificationLabels', JSON.stringify(currentLabels))
       .then(() => setLabels(currentLabels));
     }
   };
@@ -53,9 +52,8 @@ const App = () => {
   };
 
   const emptyLabels = async () => {
-    await properties
-      .onConfluencePage(contentId)
-      .set("classificationLabels", "")
+    await storage
+      .set('classificationLabels', "")
       .then(() => setLabels([]));
   }
 
